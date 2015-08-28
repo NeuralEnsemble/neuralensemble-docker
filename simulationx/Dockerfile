@@ -1,8 +1,11 @@
 #
 # A Docker image for running neuronal network simulations
 #
+# This image extends the basic "simulation" image by adding support
+# for SSH access and Xwindows.
+#
 
-FROM mozaik
+FROM neuralensemble/simulation
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 USER root

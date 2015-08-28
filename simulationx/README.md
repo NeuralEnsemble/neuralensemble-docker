@@ -51,7 +51,7 @@ You should then activate the "simulation" virtual environment:
 (docker)$ source ~/env/simulation/bin/activate
 ```
 
-after which you can run simulations with Python and MPI.
+after which you can run simulations with Python and MPI. To test that X11 forwarding is working, run `xeyes`.
 
 
 ## Mac OS X
