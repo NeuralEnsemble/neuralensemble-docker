@@ -15,7 +15,7 @@
 To enable ssh access you will need to obtain the private key for the image. Start a container with a bash shell:
 
 ```
-(host)$ docker run -i -t neuralensemble/simulation /bin/bash
+(host)$ docker run -i -t neuralensemble/simulationx /bin/bash
 ```
 
 and then in the container run:
@@ -37,7 +37,7 @@ key pair).
 In normal use, you will run the container as an SSH server:
 
 ```
-(host)$ docker run -d -p 22
+(host)$ docker run -d -p 22 neuralensemble/simulationx
 ```
 
 Run `docker ps` to obtain the port number, and then use this to connect to the container:
