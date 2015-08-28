@@ -24,3 +24,7 @@ after which you can run simulations with Python and MPI.
 
 Note that this image does not provide an X11 graphical environment, so GUI tools will not work;
 use the `neuralensemble/simulationx` image if you need X11.
+
+## Documentation
+
+For documentation of the simulation tools installed in the image, see http://neuralensemble.org/projects/

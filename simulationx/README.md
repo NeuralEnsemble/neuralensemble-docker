@@ -24,7 +24,8 @@ and then in the container run:
 (docker)# cat $KEYFILE
 ```
 
-Copy-and-paste the output into a file in your working directory, e.g. `docker_key`.
+Copy-and-paste the output into a file in your working directory, e.g. `docker_key` and then set the
+access permissions so only you can read it, i.e. `chmod go-r docker_key`.
 
 (Note: since anyone can obtain this key by downloading the image, it is not safe for running on the public web,
 and is intended only for running locally. If you wish to run this image in the cloud, you should create a new
@@ -67,3 +68,6 @@ you will need to obtain the IP address of the VM, e.g.
 (host)$ ssh -Y -i ./docker_key -p 32782 docker@192.168.99.100
 ```
 
+## Documentation
+
+For documentation of the simulation tools installed in the image, see http://neuralensemble.org/projects/
