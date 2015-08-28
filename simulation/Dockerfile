@@ -57,6 +57,7 @@ RUN mkdir $NRN; \
 
 RUN $VENV/bin/pip install lazyarray parameters quantities neo brian nrnutils
 RUN $VENV/bin/pip install --upgrade nose ipython
-RUN PATH=$PATH:$VENV/bin $VENV/bin/pip install https://github.com/NeuralEnsemble/PyNN/archive/0.8.0rc1.zip
+RUN wget https://github.com/NeuralEnsemble/PyNN/archive/0.8.0rc1.tar.gz -O /home/docker/packages/PyNN-0.8.0rc1.tar.gz
+RUN PATH=$PATH:$VENV/bin $VENV/bin/pip install /home/docker/packages/PyNN-0.8.0rc1.tar.gz
 
 WORKDIR /home/docker/
