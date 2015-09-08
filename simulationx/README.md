@@ -24,7 +24,7 @@ and then in the container run:
 (docker)# cat $KEYFILE
 ```
 
-Copy-and-paste the output into a file in your working directory, e.g. `docker_key` and then set the
+Copy-and-paste the output into a file in your working directory, e.g. `docker_key`, and then set the
 access permissions so only you can read it, i.e. `chmod go-r docker_key`.
 
 (Note: since anyone can obtain this key by downloading the image, it is not safe for running on the public web,
