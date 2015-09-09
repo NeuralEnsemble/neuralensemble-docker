@@ -16,6 +16,7 @@ RUN apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-d
                        python-pip python-numpy python-scipy python-matplotlib python-jinja2 python-mock \
                        python-virtualenv ipython python-httplib2 python-docutils python-yaml \
                        subversion python-mpi4py
+RUN apt-get install -y python-tables
 
 RUN useradd -ms /bin/bash docker
 USER docker
