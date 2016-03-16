@@ -5,10 +5,11 @@
 FROM neuralensemble/base
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
-ENV NEST=nest-2.6.0 NRN=nrn-7.3
+ENV NEST_VER=2.6.0
+ENV NEST=nest-$NEST_VER NRN=nrn-7.3
 
 WORKDIR /home/docker/packages
-RUN wget http://www.nest-simulator.org/downloads/gplreleases/$NEST.tar.gz
+RUN wget https://github.com/nest/nest-simulator/releases/download/v$NEST_VER/$NEST.tar.gz
 RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v7.3/$NRN.tar.gz
 RUN tar xzf $NEST.tar.gz; tar xzf $NRN.tar.gz; rm $NEST.tar.gz $NRN.tar.gz
 RUN svn co --username Anonymous --password Anonymous --non-interactive http://svn.incf.org/svn/libneurosim/trunk libneurosim
