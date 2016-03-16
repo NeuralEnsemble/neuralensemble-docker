@@ -17,7 +17,7 @@ docker run -i -t neuralensemble/simulation /bin/bash
 You should then activate the "simulation" virtual environment:
 
 ```
-source ~/env/simulation/bin/activate
+source ~/env/neurosci/bin/activate
 ```
 
 after which you can run simulations with Python and MPI.
