@@ -9,10 +9,10 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LANG=C.UTF-8
 
 RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
-                       wget python3 libpython3-dev libncurses5-dev libreadline-dev libgsl0-dev cython3 \
-                       python3-pip python3-numpy python3-scipy python3-matplotlib python3-jinja2 python3-mock \
-                       ipython3 python3-httplib2 python3-docutils python3-yaml \
-                       subversion python3-venv python3-mpi4py python3-tables
+                       wget python libpython-dev libncurses5-dev libreadline-dev libgsl0-dev cython \
+                       python-pip python-numpy python-scipy python-matplotlib python-jinja2 python-mock \
+                       python-virtualenv ipython python-httplib2 python-docutils python-yaml \
+                       subversion python-mpi4py python-tables
 
 RUN useradd -ms /bin/bash docker
 USER docker
@@ -21,9 +21,7 @@ RUN mkdir $HOME/env; mkdir $HOME/packages
 
 ENV VENV=$HOME/env/neurosci
 
-# we run venv twice because of this bug: https://bugs.python.org/issue24875
-# using the workaround proposed by Georges Racinet
-RUN python3 -m venv $VENV && python3 -m venv --system-site-packages $VENV
+RUN virtualenv --system-site-packages $VENV
 
-RUN $VENV/bin/pip3 install parameters quantities neo django django-tagging future hgapi gitpython sumatra
-RUN $VENV/bin/pip3 install --upgrade nose ipython
+RUN $VENV/bin/pip install parameters quantities neo django django-tagging future hgapi gitpython sumatra
+RUN $VENV/bin/pip install --upgrade nose ipython
