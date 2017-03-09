@@ -25,5 +25,6 @@ ENV VENV=$HOME/env/neurosci
 # using the workaround proposed by Georges Racinet
 RUN python3 -m venv $VENV && python3 -m venv --system-site-packages $VENV
 
+RUN $VENV/bin/pip3 install --upgrade pip
 RUN $VENV/bin/pip3 install parameters quantities neo django django-tagging future hgapi gitpython sumatra
 RUN $VENV/bin/pip3 install --upgrade nose ipython
