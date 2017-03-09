@@ -12,7 +12,7 @@ WORKDIR /home/docker/packages
 RUN wget https://github.com/nest/nest-simulator/releases/download/v$NEST_VER/$NEST.tar.gz
 RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v$NRN_VER/$NRN.tar.gz
 RUN tar xzf $NEST.tar.gz; tar xzf $NRN.tar.gz; rm $NEST.tar.gz $NRN.tar.gz
-RUN svn co --username Anonymous --password Anonymous --non-interactive http://svn.incf.org/svn/libneurosim/trunk libneurosim
+RUN git clone --depth 1 https://github.com/INCF/libneurosim.git
 RUN cd libneurosim; ./autogen.sh
 
 RUN mkdir $VENV/build
