@@ -12,7 +12,7 @@ RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-
                        wget python3 libpython3-dev libncurses5-dev libreadline-dev libgsl0-dev cython3 \
                        python3-pip python3-numpy python3-scipy python3-matplotlib python3-jinja2 python3-mock \
                        ipython3 python3-httplib2 python3-docutils python3-yaml \
-                       subversion python3-venv python3-mpi4py python3-tables
+                       subversion python3-venv python3-mpi4py python3-tables cmake
 
 RUN useradd -ms /bin/bash docker
 USER docker
