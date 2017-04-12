@@ -10,7 +10,7 @@ MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 USER root
 
-RUN apt-get install -y openssh-server libx11-dev libxext-dev x11-apps
+RUN apt-get update; apt-get install -y openssh-server libx11-dev libxext-dev x11-apps
 RUN mkdir /var/run/sshd
 EXPOSE 22
 ENV KEYFILE=/home/docker/.ssh/id_rsa

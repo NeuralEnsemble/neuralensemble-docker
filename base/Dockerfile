@@ -12,7 +12,7 @@ RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-
                        wget python libpython-dev libncurses5-dev libreadline-dev libgsl0-dev cython \
                        python-pip python-numpy python-scipy python-matplotlib python-jinja2 python-mock \
                        python-virtualenv ipython python-httplib2 python-docutils python-yaml \
-                       subversion python-mpi4py python-tables
+                       subversion python-mpi4py python-tables cmake
 
 RUN useradd -ms /bin/bash docker
 USER docker
@@ -23,5 +23,6 @@ ENV VENV=$HOME/env/neurosci
 
 RUN virtualenv --system-site-packages $VENV
 
+RUN $VENV/bin/pip install --upgrade pip
 RUN $VENV/bin/pip install parameters quantities neo django django-tagging future hgapi gitpython sumatra
 RUN $VENV/bin/pip install --upgrade nose ipython

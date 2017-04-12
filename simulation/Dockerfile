@@ -5,11 +5,11 @@
 FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
-ENV NEST_VER=2.10.0 NRN_VER=7.4
+ENV NEST_VER=2.12.0 NRN_VER=7.4
 ENV NEST=nest-$NEST_VER NRN=nrn-$NRN_VER
 
-WORKDIR /home/docker/packages
-RUN wget https://github.com/nest/nest-simulator/releases/download/v$NEST_VER/$NEST.tar.gz
+WORKDIR $HOME/packages
+RUN wget https://github.com/nest/nest-simulator/releases/download/v$NEST_VER/nest-$NEST_VER.tar.gz -O $HOME/packages/$NEST.tar.gz;
 RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v$NRN_VER/$NRN.tar.gz
 RUN tar xzf $NEST.tar.gz; tar xzf $NRN.tar.gz; rm $NEST.tar.gz $NRN.tar.gz
 RUN git clone --depth 1 https://github.com/INCF/libneurosim.git
@@ -23,7 +23,13 @@ RUN mkdir libneurosim; \
     make; make install; ls $VENV/lib $VENV/include
 RUN mkdir $NEST; \
     cd $NEST; \
-    PYTHON=$VENV/bin/python $HOME/packages/$NEST/configure --with-mpi --prefix=$VENV --with-libneurosim=$VENV; \
+    cmake -DCMAKE_INSTALL_PREFIX=$VENV \
+          -Dwith-mpi=ON  \
+          ###-Dwith-music=ON \
+          -Dwith-libneurosim=ON \
+          -DPYTHON_LIBRARY=$VENV/lib/libpython2.7.so \
+          -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 \
+          $HOME/packages/$NEST; \
     make; make install
 RUN mkdir $NRN; \
     cd $NRN; \
