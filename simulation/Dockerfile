@@ -6,7 +6,7 @@ FROM neuralensemble/base
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 ENV NEST_VER=2.12.0 NRN_VER=7.4
-ENV NEST=nest-simulator-$NEST_VER NRN=nrn-$NRN_VER
+ENV NEST=nest-$NEST_VER NRN=nrn-$NRN_VER
 ENV PATH=$PATH:$VENV/bin
 RUN ln -s /usr/bin/2to3-3.4 $VENV/bin/2to3
 
