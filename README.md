@@ -15,4 +15,4 @@ https://github.com/NeuralEnsemble/neuralensemble-docker
 
 ## Docker Hub
 
-https://hub.docker.com/r/neuralensemble/
+More information on the various images which have been released can be found at: https://hub.docker.com/r/neuralensemble/
