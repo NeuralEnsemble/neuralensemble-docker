@@ -24,6 +24,13 @@ Now set the access permissions on the key file so only you can read it, i.e. `ch
 and is intended only for running locally. If you wish to run this image in the cloud, you should create a new
 key pair).
 
+## Python version
+
+The Dockerfiles in the [master branch](https://github.com/NeuralEnsemble/neuralensemble-docker) use **Python 3.4** as the Python version; if you'd prefer **Python 2.7** (Dockerfiles in [python2 branch](https://github.com/NeuralEnsemble/neuralensemble-docker/tree/python2)) replace `neuralensemble/simulationx` with `neuralensemble/simulationx:py2`, e.g.
+
+```
+docker run -i -t neuralensemble/simulationx:py2 /bin/bash
+```
 
 ## Basic use
 
@@ -42,7 +49,7 @@ Run `docker ps` to obtain the port number, and then use this to connect to the c
 On connection, you should already be in the "neurosci" virtual environment. If not, run
 
 ```
-(docker)$ source ~/env/simulation/bin/activate
+(docker)$ source ~/env/neurosci/bin/activate
 ```
 
 after which you can run simulations with Python and MPI. To test that X11 forwarding is working, run `xeyes`.
@@ -53,13 +60,16 @@ after which you can run simulations with Python and MPI. To test that X11 forwar
 On Mac OS X, you will need to launch XQuartz if you want to display X11 windows.
  
 If using `boot2docker` or `docker-machine`, you will need to obtain the IP address of the VM, e.g.
-you will need to obtain the IP address of the VM, e.g.
 
 ```
 (host)$ docker-machine ip default
 192.168.99.100
 (host)$ ssh -Y -i ./docker_key -p 32782 docker@192.168.99.100
 ```
+
+## Docker Hub
+
+More information on the various images which have been released can be found at: https://hub.docker.com/r/neuralensemble/
 
 ## Documentation
 
