@@ -25,6 +25,13 @@ Now set the access permissions on the key file so only you can read it, i.e. `ch
 and is intended only for running locally. If you wish to run this image in the cloud, you should create a new
 key pair).
 
+## Python version
+
+The Dockerfiles in the [master branch](https://github.com/NeuralEnsemble/neuralensemble-docker) use **Python 3.4** as the Python version; if you'd prefer **Python 2.7** (Dockerfiles in [python2 branch](https://github.com/NeuralEnsemble/neuralensemble-docker/tree/python2)) replace `neuralensemble/simulationx` with `neuralensemble/simulationx:py2`, e.g.
+
+```
+docker run -i -t neuralensemble/simulationx:py2 /bin/bash
+```
 
 ## Basic use
 
@@ -60,6 +67,10 @@ If using `boot2docker` or `docker-machine`, you will need to obtain the IP addre
 192.168.99.100
 (host)$ ssh -Y -i ./docker_key -p 32782 docker@192.168.99.100
 ```
+
+## Docker Hub
+
+More information on the various images which have been released can be found at: https://hub.docker.com/r/neuralensemble/
 
 ## Documentation
 
