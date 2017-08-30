@@ -1,4 +1,4 @@
-# Biological neuronal network simulations with Python
+# Docker images for neuroscience 
 
 ## Available images:
 
