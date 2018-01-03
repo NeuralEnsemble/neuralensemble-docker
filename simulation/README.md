@@ -2,7 +2,7 @@
 
 ## What it gives you
 
-* shell environment with NEST 2.12, NEURON 7.4, and PyNN 0.9 installed.
+* shell environment with NEST 2.14, NEURON 7.5, and PyNN 0.9 installed.
 * The Python 2.7 version provides Brian 1.4, the Python 3.4 version provides Brian 2.
 * IPython, scipy, matplotlib and OpenMPI are also installed.
 * use directly or as a base for your own project-specific Docker images.

@@ -3,7 +3,7 @@
 
 ## What it gives you
 
-* shell environment with NEST 2.12, NEURON 7.4, Brian 1.4 and PyNN 0.9 installed.
+* shell environment with NEST 2.14, NEURON 7.5, Brian 1.4 and PyNN 0.9 installed.
 * IPython, scipy, matplotlib and OpenMPI are also installed.
 * ssh access, so you can access the container with multiple terminals.
 * X-windows support, so you can display windows running in the container on your host display.
