@@ -5,7 +5,7 @@
 FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
-ENV NEST_VER=2.14.0 NRN_VER=7.5
+ENV NEST_VER=2.14.0 NRN_VER=7.4
 ENV NEST=nest-$NEST_VER NRN=nrn-$NRN_VER
 
 WORKDIR $HOME/packages
