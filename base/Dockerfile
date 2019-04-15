@@ -6,17 +6,13 @@ FROM neurodebian:jessie
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update
-
 ENV LANG=C.UTF-8
 
-RUN apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
+RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
                        wget python libpython-dev libncurses5-dev libreadline-dev libgsl0-dev cython \
                        python-pip python-numpy python-scipy python-matplotlib python-jinja2 python-mock \
                        python-virtualenv ipython python-httplib2 python-docutils python-yaml \
-                       subversion python-mpi4py
-RUN apt-get install -y python-tables
+                       subversion python-mpi4py python-tables python-h5py cmake
 
 RUN useradd -ms /bin/bash docker
 USER docker
@@ -27,5 +23,6 @@ ENV VENV=$HOME/env/neurosci
 
 RUN virtualenv --system-site-packages $VENV
 
-RUN $VENV/bin/pip install parameters quantities neo django django-tagging future hgapi gitpython sumatra
+RUN $VENV/bin/pip install --upgrade pip
+RUN $VENV/bin/pip install parameters quantities neo "django<1.9" django-tagging future hgapi gitpython sumatra nixio
 RUN $VENV/bin/pip install --upgrade nose ipython
