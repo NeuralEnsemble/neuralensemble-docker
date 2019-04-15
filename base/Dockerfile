@@ -2,7 +2,7 @@
 # A base Docker image for Python-based computational neuroscience and neurophysiology
 #
 
-FROM neurodebian:jessie
+FROM neurodebian:xenial
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 ENV DEBIAN_FRONTEND noninteractive
