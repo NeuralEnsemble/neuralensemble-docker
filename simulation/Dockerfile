@@ -5,11 +5,11 @@
 FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
-ENV NEST_VER=2.14.0 NRN_VER=7.4
-ENV NEST=nest-$NEST_VER NRN=nrn-$NRN_VER
+ENV NEST_VER=2.16.0 NRN_VER=7.5
+ENV NEST=nest-simulator-$NEST_VER NRN=nrn-$NRN_VER
 
 WORKDIR $HOME/packages
-RUN wget https://github.com/nest/nest-simulator/releases/download/v$NEST_VER/nest-$NEST_VER.tar.gz -O $HOME/packages/$NEST.tar.gz;
+RUN wget https://github.com/nest/nest-simulator/archive/v$NEST_VER.tar.gz -O $HOME/packages/$NEST.tar.gz;
 RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v$NRN_VER/$NRN.tar.gz
 RUN tar xzf $NEST.tar.gz; tar xzf $NRN.tar.gz; rm $NEST.tar.gz $NRN.tar.gz
 RUN git clone --depth 1 https://github.com/INCF/libneurosim.git
