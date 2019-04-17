@@ -5,13 +5,15 @@
 FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
-ENV NEST_VER=2.14.0 NRN_VER=7.4
-ENV NEST=nest-$NEST_VER NRN=nrn-$NRN_VER
+
+## Install NEST
+
+ENV NEST_VER=2.14.0 
+ENV NEST=nest-simulator-$NEST_VER
 
 WORKDIR $HOME/packages
-RUN wget https://github.com/nest/nest-simulator/releases/download/v$NEST_VER/nest-$NEST_VER.tar.gz -O $HOME/packages/$NEST.tar.gz;
-RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v$NRN_VER/$NRN.tar.gz
-RUN tar xzf $NEST.tar.gz; tar xzf $NRN.tar.gz; rm $NEST.tar.gz $NRN.tar.gz
+RUN wget https://github.com/nest/nest-simulator/archive/v$NEST_VER.tar.gz -O $HOME/packages/$NEST.tar.gz;
+RUN tar xzf $NEST.tar.gz; rm $NEST.tar.gz
 RUN git clone --depth 1 https://github.com/INCF/libneurosim.git
 RUN cd libneurosim; ./autogen.sh
 
@@ -32,12 +34,25 @@ RUN mkdir $NEST; \
           -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 \
           $HOME/packages/$NEST; \
     make; make install
+
+## Install NEURON
+
+ENV NRN_VER=7.4
+ENV NRN=nrn-$NRN_VER
+
+WORKDIR $HOME/packages
+RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v$NRN_VER/$NRN.tar.gz
+RUN tar xzf $NRN.tar.gz; rm $NRN.tar.gz
+
 RUN mkdir $NRN; \
     cd $NRN; \
     $HOME/packages/$NRN/configure --with-paranrn --with-nrnpython=$VENV/bin/python --disable-rx3d --without-iv --prefix=$VENV; \
     make; make install; \
     cd src/nrnpython; $VENV/bin/python setup.py install; \
     cd $VENV/bin; ln -s ../x86_64/bin/nrnivmodl
+
+
+## Set paths and activate Python environment
 
 RUN PATH=$PATH:$VENV/bin $VENV/bin/pip install lazyarray brian nrnutils PyNN
 
