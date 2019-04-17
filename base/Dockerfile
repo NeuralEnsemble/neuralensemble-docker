@@ -12,7 +12,7 @@ RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-
                        wget python libpython-dev libncurses5-dev libreadline-dev libgsl0-dev cython \
                        python-pip python-numpy python-scipy python-matplotlib python-jinja2 python-mock \
                        python-virtualenv ipython python-httplib2 python-docutils python-yaml \
-                       subversion python-mpi4py python-tables python-h5py cmake
+                       subversion python-mpi4py python-tables python-h5py cmake zlib1g-dev
 
 RUN useradd -ms /bin/bash docker
 USER docker
