@@ -6,7 +6,7 @@ FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 
-## Install NEST
+#### Install NEST
 
 ENV NEST_VER=2.14.0 
 ENV NEST=nest-simulator-$NEST_VER
@@ -35,7 +35,8 @@ RUN mkdir $NEST; \
           $HOME/packages/$NEST; \
     make; make install
 
-## Install NEURON
+
+#### Install NEURON
 
 ENV NRN_VER=7.4
 ENV NRN=nrn-$NRN_VER
@@ -51,10 +52,24 @@ RUN mkdir $NRN; \
     cd src/nrnpython; $VENV/bin/python setup.py install; \
     cd $VENV/bin; ln -s ../x86_64/bin/nrnivmodl
 
+RUN $VENV/bin/pip install nrnutils==0.2.0
 
-## Set paths and activate Python environment
 
-RUN PATH=$PATH:$VENV/bin $VENV/bin/pip install lazyarray brian nrnutils PyNN
+#### Install Brian
+
+ENV BRIAN_VER=1.4.4
+RUN $VENV/bin/pip install brian==$BRIAN_VER
+
+
+#### Install PyNN
+
+ENV PYNN_VER=0.9.4
+RUN $VENV/bin/pip install neo==0.6.1 lazyarray==0.3.2 PyNN==$PYNN_VER
+
+
+#### Set paths and activate Python environment
+
+RUN PATH=$PATH:$VENV/bin 
 
 WORKDIR /home/docker/
 RUN echo "source $VENV/bin/activate" >> .bashrc
