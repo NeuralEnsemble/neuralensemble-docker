@@ -8,7 +8,7 @@ MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 #### Install NEST
 
-ENV NEST_VER=2.14.0 
+ENV NEST_VER=2.16.0 
 ENV NEST=nest-simulator-$NEST_VER
 
 WORKDIR $HOME/packages
@@ -38,7 +38,7 @@ RUN mkdir $NEST; \
 
 #### Install NEURON
 
-ENV NRN_VER=7.4
+ENV NRN_VER=7.6
 ENV NRN=nrn-$NRN_VER
 
 WORKDIR $HOME/packages
