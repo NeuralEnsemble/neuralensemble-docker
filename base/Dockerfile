@@ -24,5 +24,5 @@ ENV VENV=$HOME/env/neurosci
 RUN virtualenv --system-site-packages $VENV
 
 RUN $VENV/bin/pip install --upgrade pip
-RUN $VENV/bin/pip install parameters quantities neo==0.6.1 "django<1.9" django-tagging future hgapi gitpython sumatra nixio
+RUN $VENV/bin/pip install parameters quantities neo==0.7.1 "django<1.9" django-tagging future hgapi gitpython sumatra nixio
 RUN $VENV/bin/pip install --upgrade nose ipython
