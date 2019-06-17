@@ -66,7 +66,7 @@ RUN $VENV/bin/pip install brian2==$BRIAN_VER
 #### Install PyNN
 
 ENV PYNN_VER=0.9.4
-RUN $VENV/bin/pip install neo==0.6.1 lazyarray==0.3.2 PyNN==$PYNN_VER
+RUN $VENV/bin/pip install lazyarray==0.3.2 PyNN==$PYNN_VER
 
 
 #### Set paths and activate Python environment
