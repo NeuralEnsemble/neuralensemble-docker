@@ -2,7 +2,7 @@
 # A Docker image for running neuronal network simulations
 #
 
-FROM neuralensemble/base:py2
+FROM neuralensemble/base:py2_new
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 
@@ -64,7 +64,7 @@ RUN $VENV/bin/pip install brian==$BRIAN_VER
 #### Install PyNN
 
 ENV PYNN_VER=0.9.4
-RUN $VENV/bin/pip install neo==0.6.1 lazyarray==0.3.2 PyNN==$PYNN_VER
+RUN $VENV/bin/pip install lazyarray==0.3.2 PyNN==$PYNN_VER
 
 
 #### Set paths and activate Python environment

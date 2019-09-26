@@ -5,7 +5,7 @@
 # for SSH access and Xwindows.
 #
 
-FROM neuralensemble/simulation:py2
+FROM neuralensemble/simulation:py2_new
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 USER root
