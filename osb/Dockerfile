@@ -22,26 +22,28 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 
 # Install NeuroML Python libraries
 
-RUN pip install git+https://github.com/NeuralEnsemble/libNeuroML.git@development
-RUN pip install git+https://github.com/NeuroML/pyNeuroML
+RUN $VENV/bin/pip install git+https://github.com/NeuralEnsemble/libNeuroML.git@development
+RUN $VENV/bin/pip install git+https://github.com/NeuroML/pyNeuroML
 
+RUN $VENV/bin/pip install pandas==0.23.4 
+###RUN $VENV/bin/pip install matplotlib==2.2.4
 
 # Install OMV
 
 RUN git clone https://github.com/OpenSourceBrain/osb-model-validation.git
-RUN cd osb-model-validation && python setup.py install && cd -
-RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g /usr/local/bin/omv
+RUN cd osb-model-validation && $VENV/bin/python setup.py install && cd -
+RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
 
 # Install jNeuroML, PyLEMS & NeuroML2
 
-RUN omv install jNeuroML
+RUN $VENV/bin/omv install jNeuroML
 ENV JNML_HOME=$HOME/jnml/jNeuroMLJar
 
-RUN omv install jLEMS
+RUN $VENV/bin/omv install jLEMS
 ENV LEMS_HOME=$HOME/jLEMS
 
-RUN omv install PyLEMS_NeuroML2
+RUN $VENV/bin/omv install PyLEMS_NeuroML2
 
 ENV PATH=$PATH:$JNML_HOME:$LEMS_HOME
 
@@ -59,19 +61,18 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 # Install NetPyNE
 
-RUN $HOME/env/neurosci/bin/pip install pandas==0.23.4 matplotlib==2.2.4
-RUN git clone https://github.com/Neurosim-lab/netpyne.git  && \
-    cd netpyne && \
-    git checkout neuroml_updates && \
-    $HOME/env/neurosci/bin/python setup.py install && \
-    cd -
+##RUN git clone https://github.com/Neurosim-lab/netpyne.git  && \
+##    cd netpyne && \
+##    git checkout neuroml_updates && \
+##    $HOME/env/neurosci/bin/python setup.py install && \
+##    cd -
 
 
 # Install GENESIS
 
-RUN apt-get install -y bison flex unzip
-RUN omv install genesis
-ENV PATH=$PATH:$HOME/genesis/genesis2.4gamma-master/src
+###RUN apt-get install -y bison flex unzip
+###RUN $VENV/bin/omv install genesis
+###ENV PATH=$PATH:$HOME/genesis/genesis2.4gamma-master/src
 
 
 # Install OSB_API
@@ -88,36 +89,36 @@ RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 # Install Moose
 
-RUN omv install Moose
+###RUN omv install Moose
 
 
 # Update PyNN
 
-USER docker
-RUN $HOME/env/neurosci/bin/pip uninstall pynn -y
+###USER docker
+###RUN $VENV/bin/pip uninstall pynn -y
 
 USER root
 RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
     cd  PyNN && \
     git checkout neuroml && \  
-    $HOME/env/neurosci/bin/python  setup.py install && \
+    $VENV/bin/python  setup.py install && \
     cd -   # neuroml branch has the latest NML2 import/export code!
 RUN which python
 
 # Update Brian
 
-RUN git clone https://github.com/brian-team/brian.git
-RUN cd brian && $HOME/env/neurosci/bin/python setup.py install && cd -
+###RUN git clone https://github.com/brian-team/brian.git
+###RUN cd brian && $HOME/env/neurosci/bin/python setup.py install && cd -
 
 
 # Install Brian2
 
-RUN $HOME/env/neurosci/bin/pip install Brian2
+##RUN $HOME/env/neurosci/bin/pip install Brian2
 
 
 # Get some latest Python packages
 
-RUN $HOME/env/neurosci/bin/pip install lazyarray --upgrade
+##RUN $HOME/env/neurosci/bin/pip install lazyarray --upgrade
 
 
 # Some aliases
