@@ -2,7 +2,7 @@
 # A Docker image for running neuronal network simulations
 #
 
-FROM neuralensemble/base
+FROM neuralensemble/base_newpy3
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
@@ -57,7 +57,9 @@ RUN mkdir $NRN; \
 RUN $VENV/bin/pip install nrnutils==0.2.0
 
 
-#### Install Brian2  # Note Brian 1.4.1 not Python 3 compatible
+#### Install Brian2  
+# Note 1: Brian 1.4.1 not Python 3 compatible
+# Note 2: For latest status on Brain 2 support in PyNN see: https://github.com/NeuralEnsemble/PyNN/pull/654
 
 ENV BRIAN_VER=2.1.3.1
 RUN $VENV/bin/pip install brian2==$BRIAN_VER
