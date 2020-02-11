@@ -61,18 +61,22 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 # Install NetPyNE
 
+RUN apt-get remove -y python3-cycler python3-matplotlib
+RUN $VENV/bin/pip install  matplotlib==2.2.4
+RUN $VENV/bin/pip install netpyne==0.9.5 
+
 ##RUN git clone https://github.com/Neurosim-lab/netpyne.git  && \
 ##    cd netpyne && \
 ##    git checkout neuroml_updates && \
-##    $HOME/env/neurosci/bin/python setup.py install && \
+##    python setup.py install && \
 ##    cd -
 
 
 # Install GENESIS
 
-###RUN apt-get install -y bison flex unzip
-###RUN $VENV/bin/omv install genesis
-###ENV PATH=$PATH:$HOME/genesis/genesis2.4gamma-master/src
+RUN apt-get install -y bison flex unzip
+RUN $VENV/bin/omv install genesis
+ENV PATH=$PATH:$HOME/genesis/genesis2.4gamma-master/src
 
 
 # Install OSB_API
