@@ -25,7 +25,6 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 RUN $VENV/bin/pip install git+https://github.com/NeuralEnsemble/libNeuroML.git@development
 RUN $VENV/bin/pip install git+https://github.com/NeuroML/pyNeuroML
 
-RUN $VENV/bin/pip install pandas==0.23.4 
 ###RUN $VENV/bin/pip install matplotlib==2.2.4
 
 # Install OMV
@@ -61,8 +60,8 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 # Install NetPyNE
 
-RUN apt-get remove -y python3-cycler python3-matplotlib
-RUN $VENV/bin/pip install  matplotlib==2.2.4
+RUN apt-get remove -y python3-cycler python3-matplotlib python3-dateutil
+RUN $VENV/bin/pip install matplotlib==2.2.4 pandas==0.23.4 python-dateutil==2.5.0
 RUN $VENV/bin/pip install netpyne==0.9.5 
 
 ##RUN git clone https://github.com/Neurosim-lab/netpyne.git  && \
@@ -93,7 +92,11 @@ RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 # Install Moose
 
-###RUN omv install Moose
+# Compile Moose with /usr/bin/python3, but install with venv version...
+# Caused by (not insurmountable) issue finding python headers in venv
+RUN git clone https://github.com/pgleeson/moose-core.git && cd moose-core && \
+    mkdir build_ && cd build_ && cmake -DPYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3 .. && \
+    make -j4 && make install && cd python && $VENV/bin/python setup.py install
 
 
 # Update PyNN
