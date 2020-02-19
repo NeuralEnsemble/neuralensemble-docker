@@ -6,9 +6,9 @@
 #
 
 # Use tagged version of neuralensemble/simulationx, e.g. Python 2, PyNN 0.9.1
-#FROM neuralensemble/simulationx:py2_pynn091
+#FROM neuralensemble/simulationx:py2_pynn094
 # Temp for testing
-FROM neuralensemble/simulationx:py2_new
+FROM neuralensemble/simulationx:py2
 MAINTAINER p.gleeson@gmail.com
 
 USER root
@@ -59,7 +59,7 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 # Install NetPyNE
 
-RUN $HOME/env/neurosci/bin/pip install pandas==0.23.4 matplotlib==2.2.4
+RUN $HOME/env/neurosci/bin/pip install pandas==0.23.4 matplotlib==2.2.4 setuptools==42.0.1
 RUN git clone https://github.com/Neurosim-lab/netpyne.git  && \
     cd netpyne && \
     git checkout neuroml_updates && \

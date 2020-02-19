@@ -2,7 +2,7 @@
 # A Docker image for running neuronal network simulations
 #
 
-FROM neuralensemble/base:py2_new
+FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 

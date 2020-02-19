@@ -1,1 +1,1 @@
-docker build -t neuralensemble/simulation:py2_new .
+docker build -t neuralensemble/simulation:py2 .
