@@ -61,7 +61,7 @@ RUN $VENV/bin/pip install nrnutils==0.2.0
 # Note 1: Brian 1.4.1 not Python 3 compatible
 # Note 2: For latest status on Brain 2 support in PyNN see: https://github.com/NeuralEnsemble/PyNN/pull/654
 
-ENV BRIAN_VER=2.1.3.1
+ENV BRIAN_VER=2.3
 RUN $VENV/bin/pip install brian2==$BRIAN_VER
 
 
