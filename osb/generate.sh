@@ -1,1 +1,1 @@
-docker build -t osb_newpy3 .
+docker build -t neuralensemble/osb .

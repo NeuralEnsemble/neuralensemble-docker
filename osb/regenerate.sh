@@ -1,1 +1,1 @@
-docker build -t osb_newpy3 --no-cache .
+docker build -t neuralensemble/osb --no-cache .

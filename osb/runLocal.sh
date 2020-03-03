@@ -1,1 +1,1 @@
-docker run -i -t osb_newpy3 /bin/bash
+docker run -i -t neuralensemble/osb /bin/bash

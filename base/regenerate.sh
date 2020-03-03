@@ -1,1 +1,1 @@
-docker build -t neuralensemble/base_newpy3 --no-cache .
+docker build -t neuralensemble/base --no-cache .
