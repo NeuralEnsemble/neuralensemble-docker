@@ -23,6 +23,7 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 # Install NeuroML Python libraries
 
 RUN $VENV/bin/pip install git+https://github.com/NeuralEnsemble/libNeuroML.git@development
+RUN $VENV/bin/pip install git+https://github.com/NeuroML/NeuroMLlite
 RUN $VENV/bin/pip install git+https://github.com/NeuroML/pyNeuroML
 
 ###RUN $VENV/bin/pip install matplotlib==2.2.4

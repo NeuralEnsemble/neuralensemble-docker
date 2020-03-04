@@ -8,9 +8,17 @@ MAINTAINER andrew.davison@unic.cnrs-gif.fr
 RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 
-#### Install NEST
+#### Set versions
 
 ENV NEST_VER=2.16.0 
+ENV NRN_VER=7.6
+# Note: see below re Brian2 support...
+ENV BRIAN2_VER=2.3   
+ENV PYNN_VER=0.9.4
+
+
+#### Install NEST
+
 ENV NEST=nest-simulator-$NEST_VER
 
 WORKDIR $HOME/packages
@@ -40,7 +48,6 @@ RUN mkdir $NEST; \
 
 #### Install NEURON
 
-ENV NRN_VER=7.6
 ENV NRN=nrn-$NRN_VER
 
 WORKDIR $HOME/packages
@@ -58,16 +65,15 @@ RUN $VENV/bin/pip install nrnutils==0.2.0
 
 
 #### Install Brian2  
+
 # Note 1: Brian 1.4.1 not Python 3 compatible
 # Note 2: For latest status on Brain 2 support in PyNN see: https://github.com/NeuralEnsemble/PyNN/pull/654
 
-ENV BRIAN_VER=2.3
-RUN $VENV/bin/pip install brian2==$BRIAN_VER
+RUN $VENV/bin/pip install brian2==$BRIAN2_VER
 
 
 #### Install PyNN
 
-ENV PYNN_VER=0.9.4
 RUN $VENV/bin/pip install lazyarray==0.3.2 PyNN==$PYNN_VER
 
 
