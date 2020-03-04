@@ -6,9 +6,16 @@ FROM neuralensemble/base:py2
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 
-#### Install NEST
+#### Set versions
 
 ENV NEST_VER=2.16.0 
+ENV NRN_VER=7.6
+ENV BRIAN_VER=1.4.4
+ENV PYNN_VER=0.9.4
+
+
+#### Install NEST
+
 ENV NEST=nest-simulator-$NEST_VER
 
 WORKDIR $HOME/packages
@@ -38,7 +45,6 @@ RUN mkdir $NEST; \
 
 #### Install NEURON
 
-ENV NRN_VER=7.6
 ENV NRN=nrn-$NRN_VER
 
 WORKDIR $HOME/packages
@@ -57,13 +63,11 @@ RUN $VENV/bin/pip install nrnutils==0.2.0
 
 #### Install Brian
 
-ENV BRIAN_VER=1.4.4
 RUN $VENV/bin/pip install brian==$BRIAN_VER
 
 
 #### Install PyNN
 
-ENV PYNN_VER=0.9.4
 RUN $VENV/bin/pip install lazyarray==0.3.2 PyNN==$PYNN_VER
 
 
