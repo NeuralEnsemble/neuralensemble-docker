@@ -24,5 +24,6 @@ ENV VENV=$HOME/env/neurosci
 RUN virtualenv --system-site-packages $VENV
 
 RUN $VENV/bin/pip install --upgrade pip
-RUN $VENV/bin/pip install parameters quantities neo==0.7.1 "django<1.9" django-tagging future hgapi gitpython sumatra nixio
+# Using specific version of neo, due to this issue: https://github.com/NeuralEnsemble/neuralensemble-docker/issues/9#issuecomment-483764236
+RUN $VENV/bin/pip install parameters quantities neo==0.7.2 "django<1.9" django-tagging future hgapi gitpython sumatra nixio
 RUN $VENV/bin/pip install --upgrade nose 
