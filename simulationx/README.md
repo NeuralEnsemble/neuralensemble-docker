@@ -3,8 +3,8 @@
 
 ## What it gives you
 
-* shell environment with NEST 2.14, NEURON 7.5, and PyNN 0.9 installed.
-* The Python 2.7 version provides Brian 1.4, the Python 3.4 version provides Brian 2.
+* shell environment with NEST, NEURON, Brian and PyNN installed (for specific versions see [Dockerfile](../simulation/Dockerfile)).
+* The Python 2.7 version provides Brian 1.4, the Python 3.5 version provides Brian 2.
 * IPython, scipy, matplotlib and OpenMPI are also installed.
 * ssh access, so you can access the container with multiple terminals.
 * X-windows support, so you can display windows running in the container on your host display.
@@ -27,7 +27,7 @@ key pair).
 
 ## Python version
 
-The Dockerfiles in the [master branch](https://github.com/NeuralEnsemble/neuralensemble-docker) use **Python 3.4** as the Python version; if you'd prefer **Python 2.7** (Dockerfiles in [python2 branch](https://github.com/NeuralEnsemble/neuralensemble-docker/tree/python2)) replace `neuralensemble/simulationx` with `neuralensemble/simulationx:py2`, e.g.
+The Dockerfiles in the [master branch](https://github.com/NeuralEnsemble/neuralensemble-docker) use **Python 3.5** as the Python version; if you'd prefer **Python 2.7** (Dockerfiles in [python2 branch](https://github.com/NeuralEnsemble/neuralensemble-docker/tree/python2)) replace `neuralensemble/simulationx` with `neuralensemble/simulationx:py2`, e.g.
 
 ```
 docker run -i -t neuralensemble/simulationx:py2 /bin/bash

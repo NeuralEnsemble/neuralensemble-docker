@@ -1,1 +1,4 @@
 .idea
+/base/generate.sh
+/simulationx/runLocal.sh
+/simulationx/regenerateAll.sh
