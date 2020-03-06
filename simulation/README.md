@@ -2,8 +2,8 @@
 
 ## What it gives you
 
-* shell environment with NEST 2.14, NEURON 7.5, and PyNN 0.9 installed.
-* The Python 2.7 version provides Brian 1.4, the Python 3.4 version provides Brian 2.
+* shell environment with NEST, NEURON, Brian and PyNN installed (for specific versions see [Dockerfile](Dockerfile)).
+* The Python 2.7 version provides Brian 1.4, the Python 3.5 version provides Brian 2.
 * IPython, scipy, matplotlib and OpenMPI are also installed.
 * use directly or as a base for your own project-specific Docker images.
 
@@ -16,7 +16,7 @@ in a Python virtual environment named "neurosci".
 docker run -i -t neuralensemble/simulation:py2 /bin/bash
 ```
 
-after which you can run simulations with Python and MPI. This will use **Python 2.7** as the Python version; if you'd prefer **Python 3.4** use:
+after which you can run simulations with Python and MPI. This will use **Python 2.7** as the Python version; if you'd prefer **Python 3.5** use:
 
 ```
 docker run -i -t neuralensemble/simulation /bin/bash

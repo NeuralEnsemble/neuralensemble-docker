@@ -2,7 +2,7 @@
 # A base Docker image for Python-based computational neuroscience and neurophysiology
 #
 
-FROM neurodebian:jessie
+FROM neurodebian:xenial
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -12,7 +12,7 @@ RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-
                        wget python libpython-dev libncurses5-dev libreadline-dev libgsl0-dev cython \
                        python-pip python-numpy python-scipy python-matplotlib python-jinja2 python-mock \
                        python-virtualenv ipython python-httplib2 python-docutils python-yaml \
-                       subversion python-mpi4py python-tables python-h5py cmake
+                       subversion python-mpi4py python-tables python-h5py cmake zlib1g-dev
 
 RUN useradd -ms /bin/bash docker
 USER docker
@@ -24,5 +24,6 @@ ENV VENV=$HOME/env/neurosci
 RUN virtualenv --system-site-packages $VENV
 
 RUN $VENV/bin/pip install --upgrade pip
-RUN $VENV/bin/pip install parameters quantities neo "django<1.9" django-tagging future hgapi gitpython sumatra nixio
-RUN $VENV/bin/pip install --upgrade nose ipython
+# Using specific version of neo, due to this issue: https://github.com/NeuralEnsemble/neuralensemble-docker/issues/9#issuecomment-483764236
+RUN $VENV/bin/pip install parameters quantities neo==0.7.2 "django<1.9" django-tagging future hgapi gitpython sumatra nixio
+RUN $VENV/bin/pip install --upgrade nose 
