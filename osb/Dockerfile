@@ -8,7 +8,7 @@
 # Use tagged version of neuralensemble/simulationx, e.g. Python 2, PyNN 0.9.1
 #FROM neuralensemble/simulationx:py2_pynn094
 # Temp for testing
-FROM neuralensemble/simulationx
+FROM neuralensemble/simulationx_95
 MAINTAINER p.gleeson@gmail.com
 
 USER root

@@ -1,1 +1,1 @@
-docker build -t neuralensemble/osb --no-cache .
+docker build -t neuralensemble/osb_95 --no-cache .

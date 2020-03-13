@@ -2,7 +2,7 @@
 # A Docker image for running neuronal network simulations
 #
 
-FROM neuralensemble/base
+FROM neuralensemble/base_95
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
@@ -10,11 +10,11 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 #### Set versions
 
-ENV NEST_VER=2.16.0 
-ENV NRN_VER=7.6
+ENV NEST_VER=2.20.0 
+ENV NRN_VER=7.7
 # Note: see below re Brian2 support...
 ENV BRIAN2_VER=2.3   
-ENV PYNN_VER=0.9.4
+ENV PYNN_VER=0.9.5
 
 
 #### Install NEST
@@ -74,7 +74,7 @@ RUN $VENV/bin/pip install brian2==$BRIAN2_VER
 
 #### Install PyNN
 
-RUN $VENV/bin/pip install lazyarray==0.3.2 PyNN==$PYNN_VER
+RUN $VENV/bin/pip install lazyarray==0.3.3 PyNN==$PYNN_VER
 
 
 #### Set paths and activate Python environment
