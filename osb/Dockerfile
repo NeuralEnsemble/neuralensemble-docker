@@ -16,6 +16,7 @@ USER root
 RUN apt-get update 
 RUN apt-get install -y default-jdk python-tk python-lxml octave maven
 RUN apt-get install -y htop libxml2-dev libxslt-dev zlib1g-dev
+RUN apt-get install -y python3-setuptools unzip
 
 RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 
