@@ -13,7 +13,7 @@ MAINTAINER p.gleeson@gmail.com
 
 USER root
 
-RUN apt-get update 
+RUN apt-get update
 RUN apt-get install -y default-jdk python-tk python-lxml octave maven
 RUN apt-get install -y htop libxml2-dev libxslt-dev zlib1g-dev
 RUN apt-get install -y python3-setuptools unzip
@@ -64,20 +64,15 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 RUN apt-get remove -y python3-cycler python3-matplotlib python3-dateutil
 RUN $VENV/bin/pip install matplotlib==2.2.4 pandas==0.23.4 python-dateutil==2.5.0
-RUN $VENV/bin/pip install netpyne==0.9.5 
-
-##RUN git clone https://github.com/Neurosim-lab/netpyne.git  && \
-##    cd netpyne && \
-##    git checkout neuroml_updates && \
-##    python setup.py install && \
-##    cd -
+RUN $VENV/bin/pip install netpyne==0.9.8
 
 
+######### Disabled for now, issues compiling on bionic....
 # Install GENESIS
 
-RUN apt-get install -y bison flex unzip
-RUN $VENV/bin/omv install genesis
-ENV PATH=$PATH:$HOME/genesis/genesis2.4gamma-master/src
+#RUN apt-get install -y bison flex unzip
+#RUN $VENV/bin/omv install genesis
+#ENV PATH=$PATH:$HOME/genesis/genesis2.4gamma-master/src
 
 
 # Install OSB_API
@@ -109,7 +104,7 @@ RUN git clone https://github.com/pgleeson/moose-core.git && cd moose-core && \
 USER root
 RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
     cd  PyNN && \
-    git checkout neuroml && \  
+    git checkout neuroml && \
     $VENV/bin/python  setup.py install && \
     cd -   # neuroml branch has the latest NML2 import/export code!
 RUN which python
@@ -135,6 +130,3 @@ RUN which python
 RUN echo '\n\nalias cd..="cd .."\nalias h=history\nalias ll="ls -alt"' >> ~/.bashrc
 
 RUN echo "Built the main OSB Docker image!"
-
-
-
