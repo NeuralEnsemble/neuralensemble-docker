@@ -73,14 +73,18 @@ RUN $VENV/bin/pip install nrnutils==0.2.0
 RUN $VENV/bin/pip install brian2==$BRIAN2_VER
 
 
+#### Set paths
+
+ENV PATH=$PATH:$VENV/bin
+
+
 #### Install PyNN
 
 RUN $VENV/bin/pip install lazyarray==0.3.3 PyNN==$PYNN_VER
 
 
-#### Set paths and activate Python environment
-
-RUN PATH=$PATH:$VENV/bin
+#### Activate Python environment
 
 WORKDIR /home/docker/
+
 RUN echo "source $VENV/bin/activate" >> .bashrc
