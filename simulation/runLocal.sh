@@ -1,1 +1,1 @@
-docker run -i -t neuralensemble/simulation_95 /bin/bash
+docker run -i -t neuralensemble/simulation /bin/bash

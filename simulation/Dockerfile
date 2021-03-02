@@ -2,7 +2,7 @@
 # A Docker image for running neuronal network simulations
 #
 
-FROM neuralensemble/base_95
+FROM neuralensemble/base
 MAINTAINER andrew.davison@unic.cnrs-gif.fr
 
 RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3

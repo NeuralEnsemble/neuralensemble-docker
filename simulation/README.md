@@ -3,7 +3,7 @@
 ## What it gives you
 
 * shell environment with NEST, NEURON, Brian and PyNN installed (for specific versions see [Dockerfile](Dockerfile)).
-* The Python 2.7 version provides Brian 1.4, the Python 3.5 version provides Brian 2.
+* The Python 2 version provides Brian 1.4, the Python 3 version provides Brian 2.
 * IPython, scipy, matplotlib and OpenMPI are also installed.
 * use directly or as a base for your own project-specific Docker images.
 

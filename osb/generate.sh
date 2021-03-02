@@ -1,1 +1,1 @@
-docker build -t neuralensemble/osb_95 .
+docker build -t neuralensemble/osb .

@@ -1,1 +1,1 @@
-docker run -i -t neuralensemble/osb_95 /bin/bash
+docker run -i -t neuralensemble/osb /bin/bash
