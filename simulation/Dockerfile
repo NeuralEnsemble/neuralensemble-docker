@@ -10,11 +10,11 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 #### Set versions
 
-ENV NEST_VER=2.18.0
-ENV NRN_VER=7.7
+ENV NEST_VER=2.20.0
+ENV NRN_VER=7.8.2
 # Note: see below re Brian2 support...
 ENV BRIAN2_VER=2.3
-ENV PYNN_VER=0.9.5
+ENV PYNN_VER=0.9.6
 
 
 #### Install NEST
@@ -49,20 +49,7 @@ RUN mkdir $NEST; \
 
 #### Install NEURON
 
-ENV NRN=nrn-$NRN_VER
-
-WORKDIR $HOME/packages
-RUN wget http://www.neuron.yale.edu/ftp/neuron/versions/v$NRN_VER/$NRN.tar.gz
-RUN tar xzf $NRN.tar.gz; rm $NRN.tar.gz
-
-RUN mkdir $NRN; \
-    cd $NRN; \
-    $HOME/packages/$NRN/configure --with-paranrn --with-nrnpython=$VENV/bin/python --disable-rx3d --without-iv --prefix=$VENV; \
-    make; make install; \
-    cd src/nrnpython; $VENV/bin/python setup.py install; \
-    cd $VENV/bin; ln -s ../x86_64/bin/nrnivmodl
-
-RUN $VENV/bin/pip install nrnutils==0.2.0
+RUN $VENV/bin/pip install neuron==$NRN_VER
 
 
 #### Install Brian2
@@ -80,7 +67,7 @@ ENV PATH=$PATH:$VENV/bin
 
 #### Install PyNN
 
-RUN $VENV/bin/pip install lazyarray==0.3.3 PyNN==$PYNN_VER
+RUN $VENV/bin/pip install PyNN==$PYNN_VER
 
 
 #### Activate Python environment

@@ -49,10 +49,10 @@ RUN $VENV/bin/omv install PyLEMS_NeuroML2
 ENV PATH=$PATH:$JNML_HOME:$LEMS_HOME
 
 
-# Set up NEURON (should be updated in neuralensemble/simulationx:py2...)
+# Set up NEURON (TODO: should be set in neuralensemble/simulationx...)
 
-ENV PATH=$PATH:$HOME/env/neurosci/x86_64/bin
-ENV NEURON_HOME=$HOME/env/neurosci/x86_64
+ENV PATH=$PATH:$HOME/env/neurosci/bin
+ENV NEURON_HOME=$HOME/env/neurosci
 
 
 # Set up NEST
@@ -104,7 +104,7 @@ RUN git clone https://github.com/pgleeson/moose-core.git && cd moose-core && \
 USER root
 RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
     cd  PyNN && \
-    git checkout neuroml && \
+    git checkout neuroml_pynn096 && \
     $VENV/bin/python  setup.py install && \
     cd -   # neuroml branch has the latest NML2 import/export code!
 RUN which python
