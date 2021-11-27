@@ -22,5 +22,10 @@ jobs:
         
     - name: Build the simulation Docker image
       run: |
-        cd ../simulation        
+        cd simulation        
+        ./generate.sh
+
+    - name: Build the simulationx Docker image
+      run: |
+        cd simulationx       
         ./generate.sh
