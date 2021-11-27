@@ -14,7 +14,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Build the base Docker image
       run: |
         cd base
-        docker build . --file Dockerfile
+        ./regenerate.sh
+        
+    - name: Build the simulation Docker image
+      run: |
+        cd ../simulation        
+        ./generate.sh
