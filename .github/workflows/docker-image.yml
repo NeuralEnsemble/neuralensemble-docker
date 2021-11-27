@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master, test_pynn* ]
+  pull_request:
+    branches: [ master, test_pynn* ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the base Docker image
+      run: |
+        cd base
+        docker build . --file Dockerfile
