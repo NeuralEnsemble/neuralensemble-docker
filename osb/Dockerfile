@@ -62,7 +62,7 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 RUN apt-get remove -y python3-cycler python3-matplotlib python3-dateutil
 RUN $VENV/bin/pip install matplotlib==2.2.4 pandas==0.23.4 python-dateutil==2.5.0
-RUN $VENV/bin/pip install netpyne==0.9.8
+RUN $VENV/bin/pip install netpyne==1.0.0.2
 
 
 ######### Disabled for now, issues compiling on bionic....
@@ -102,7 +102,7 @@ RUN git clone https://github.com/pgleeson/moose-core.git && cd moose-core && \
 USER root
 RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
     cd  PyNN && \
-    git checkout neuroml_pynn096 && \
+    git checkout 0.9.6 && \
     $VENV/bin/python  setup.py install && \
     cd -   # neuroml branch has the latest NML2 import/export code!
 RUN which python
@@ -127,4 +127,5 @@ RUN which python
 
 RUN echo '\n\nalias cd..="cd .."\nalias h=history\nalias ll="ls -alt"' >> ~/.bashrc
 
+RUN $VENV/bin/omv list -V
 RUN echo "Built the main OSB Docker image!"
