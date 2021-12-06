@@ -14,7 +14,7 @@ ENV NEST_VER=2.20.0
 ENV NRN_VER=7.8.2
 # Note: see below re Brian2 support...
 ENV BRIAN2_VER=2.3
-ENV PYNN_VER=0.9.6
+ENV PYNN_VER=0.10.0
 
 
 #### Install NEST
@@ -35,14 +35,14 @@ RUN mkdir libneurosim; \
     make; make install; ls $VENV/lib $VENV/include
 RUN mkdir $NEST; \
     cd $NEST; \
-    ln -s /usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6.so $VENV/lib/; \
+    ln -s /usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.so $VENV/lib/; \
     cmake -DCMAKE_INSTALL_PREFIX=$VENV \
           -Dwith-mpi=ON  \
           ###-Dwith-music=ON \
           -Dwith-libneurosim=ON \
           -DPYTHON_EXECUTABLE:FILEPATH=$VENV/bin/python \
-          -DPYTHON_LIBRARY=$VENV/lib/libpython3.6.so \
-          -DPYTHON_INCLUDE_DIR=/usr/include/python3.6 \
+          -DPYTHON_LIBRARY=$VENV/lib/libpython3.8.so \
+          -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 \
           $HOME/packages/$NEST; \
     make -j7; make install
 

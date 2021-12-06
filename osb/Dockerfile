@@ -102,7 +102,7 @@ RUN git clone https://github.com/pgleeson/moose-core.git && cd moose-core && \
 USER root
 RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
     cd  PyNN && \
-    git checkout 0.9.6 && \
+    git checkout 0.10.0 && \
     $VENV/bin/python  setup.py install && \
     cd -   # neuroml branch has the latest NML2 import/export code!
 RUN which python
