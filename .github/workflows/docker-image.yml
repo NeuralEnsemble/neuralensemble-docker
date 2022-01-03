@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master, test_pynn* ]
+  pull_request:
+    branches: [ master, test_pynn* ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build the base Docker image
+      run: |
+        cd base
+        ./regenerate.sh
+        
+    - name: Build the simulation Docker image
+      run: |
+        cd simulation        
+        ./generate.sh
+
+    - name: Build the simulationx Docker image
+      run: |
+        cd simulationx       
+        ./generate.sh
+
+    - name: Build the osb Docker image
+      run: |
+        cd osb       
+        ./generate.sh
