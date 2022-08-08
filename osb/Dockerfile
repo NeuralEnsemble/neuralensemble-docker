@@ -80,7 +80,7 @@ RUN cd OSB_API/python && python setup.py install && cd -
 
 # Install neuroConstruct
 
-RUN git clone git://github.com/NeuralEnsemble/neuroConstruct.git
+RUN git clone https://github.com/NeuralEnsemble/neuroConstruct
 RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 
