@@ -28,8 +28,7 @@ RUN $VENV/bin/pip install pyNeuroML==0.7.5 # will set versions of libNeuroML, py
 
 # Install OMV
 
-RUN git clone https://github.com/OpenSourceBrain/osb-model-validation.git
-RUN cd osb-model-validation && $VENV/bin/python setup.py install && cd -
+RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@test_pynn0101 
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
 
@@ -126,6 +125,7 @@ RUN which python
 
 ##RUN $HOME/env/neurosci/bin/pip install lazyarray --upgrade
 
+RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
 
 # Some aliases
 
