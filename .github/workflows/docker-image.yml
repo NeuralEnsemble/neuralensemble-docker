@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Build the base Docker image
       run: |
@@ -34,3 +34,11 @@ jobs:
       run: |
         cd osb       
         ./generate.sh
+
+    - name: Print info on installed packages
+      run: |
+        docker run -t  neuralensemble/osb   /bin/bash -c "omv list -V" 
+
+    - name: Print info on docker images
+      run: |
+        docker images
