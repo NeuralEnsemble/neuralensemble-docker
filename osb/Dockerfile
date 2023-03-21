@@ -85,15 +85,7 @@ RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 # Install Moose
 
-# Compile Moose with /usr/bin/python3, but install with venv version...
-# Caused by (not insurmountable) issue finding python headers in venv
-
-##RUN git clone https://github.com/pgleeson/moose-core.git && cd moose-core && \
-##    mkdir build_ && cd build_ && cmake -DPYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3 .. && \
-##    make -j4 && make install && cd python && $VENV/bin/python setup.py install
-
-RUN git clone https://github.com/OpenSourceBrain/moose-core.git && cd moose-core && \
-    git checkout nml2_updates_2 && $VENV/bin/python setup.py install
+RUN omv install moose
 
 
 
