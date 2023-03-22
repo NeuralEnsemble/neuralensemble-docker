@@ -87,6 +87,14 @@ RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 RUN omv install moose
 
+# Install Arbor
+
+RUN omv install arbor
+
+# Install EDEN
+
+RUN omv install eden
+
 
 
 # Update PyNN
