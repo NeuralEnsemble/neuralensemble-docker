@@ -28,7 +28,7 @@ RUN $VENV/bin/pip install pyNeuroML==0.7.5 # will set versions of libNeuroML, py
 
 # Install OMV
 
-RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@test_pynn0101 
+RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
 
@@ -60,7 +60,7 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 
 RUN apt-get remove -y python3-cycler python3-matplotlib python3-dateutil
 #RUN $VENV/bin/pip install pandas==0.23.4 python-dateutil==2.5.0
-RUN $VENV/bin/pip install netpyne==1.0.2.1
+RUN $VENV/bin/pip install git+https://github.com/suny-downstate-medical-center/netpyne@neuroml_updates
 
 
 ######### Disabled for now, issues compiling on bionic....
@@ -96,34 +96,9 @@ RUN omv install arbor
 RUN omv install eden
 
 
-
-# Update PyNN
-
-###USER docker
-###RUN $VENV/bin/pip uninstall pynn -y
-
 USER root
-#RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
-#    cd  PyNN && \
-#    git checkout 0.10.1 && \
-#    $VENV/bin/python  setup.py install && \
-#    cd -   # neuroml branch has the latest NML2 import/export code!
+
 RUN which python
-
-# Update Brian
-
-###RUN git clone https://github.com/brian-team/brian.git
-###RUN cd brian && $HOME/env/neurosci/bin/python setup.py install && cd -
-
-
-# Install Brian2
-
-##RUN $HOME/env/neurosci/bin/pip install Brian2
-
-
-# Get some latest Python packages
-
-##RUN $HOME/env/neurosci/bin/pip install lazyarray --upgrade
 
 RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
 
