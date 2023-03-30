@@ -23,13 +23,15 @@ RUN osb-model-validation/utilities/getcoreosbprojects.sh
 
 # Pre-compile mod files for some models
 
-RUN cd coreprojects/SmithEtAl2013-L23DendriticSpikes/NEURON/test && nrnivmodl ../mod.files && cd -
+RUN cd coreprojects/SmithEtAl2013-L23DendriticSpikes/NEURON/test && nrnivmodl ../mod.files
 
-RUN cd coreprojects/ca1/NeuroML2 && nrnivmodl .. && cd -
+RUN cd coreprojects/L5bPyrCellHayEtAl2011/NEURON/test && nrnivmodl ../mod
 
-RUN cd coreprojects/SadehEtAl2017-InhibitionStabilizedNetworks && ./make_tests.sh && cd -
+RUN cd coreprojects/ca1/NeuroML2 && nrnivmodl .. 
 
-RUN cd coreprojects/PotjansDiesmann2014/ && ./make_tests.sh && cd -
+RUN cd coreprojects/SadehEtAl2017-InhibitionStabilizedNetworks && ./make_tests.sh
+
+RUN cd coreprojects/PotjansDiesmann2014/ && ./make_tests.sh
 
 # For Allen
 RUN $VENV/bin/pip install allensdk
