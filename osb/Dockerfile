@@ -23,7 +23,7 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 
 # Install NeuroML Python libraries
 
-RUN $VENV/bin/pip install pyNeuroML==0.7.5 # will set versions of libNeuroML, pylems, NeuroMLlite...
+RUN $VENV/bin/pip install pyNeuroML==1.0.8 # will set versions of libNeuroML, pylems, NeuroMLlite...
 
 
 # Install OMV
