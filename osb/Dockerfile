@@ -80,7 +80,7 @@ RUN cd OSB_API/python && python setup.py install && cd -
 
 # Install neuroConstruct
 
-RUN git clone git://github.com/NeuralEnsemble/neuroConstruct.git
+RUN git clone https://github.com/NeuralEnsemble/neuroConstruct.git
 RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 
@@ -119,6 +119,12 @@ RUN which python
 # Get some latest Python packages
 
 ##RUN $HOME/env/neurosci/bin/pip install lazyarray --upgrade
+
+# Install Eden
+USER docker
+ENV EDEN_VER=0.2.1
+RUN $VENV/bin/pip install eden-simulator==$EDEN_VER
+USER root
 
 
 # Some aliases
