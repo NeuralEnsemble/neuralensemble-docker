@@ -79,7 +79,7 @@ RUN cd OSB_API/python && python setup.py install && cd -
 
 # Install neuroConstruct
 
-RUN git clone https://github.com/NeuralEnsemble/neuroConstruct
+RUN git clone https://github.com/NeuralEnsemble/neuroConstruct.git
 RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 
@@ -93,7 +93,8 @@ RUN omv install arbor
 
 # Install EDEN
 
-RUN omv install eden
+ENV EDEN_VER=0.2.1
+RUN $VENV/bin/pip install eden-simulator==$EDEN_VER
 
 
 USER root
