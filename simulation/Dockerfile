@@ -68,6 +68,7 @@ ENV PATH=$PATH:$VENV/bin
 #### Install PyNN
 
 RUN $VENV/bin/pip install PyNN==$PYNN_VER
+RUN cd /home/docker/env/neurosci/lib/python3.8/site-packages/pyNN/neuron/nmodl; nrnivmodl; cd -
 
 
 #### Activate Python environment
