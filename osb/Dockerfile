@@ -20,21 +20,30 @@ RUN apt-get install -y python3-setuptools unzip
 
 RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 
+#### Set versions
+
+# This will set the versions of simulators installed with 'omv install ...'
+ENV OMV_VER=v0.2.11     
+
+ENV PYNEUROML_VER=1.1.0
+ENV NETPYNE_VER=1.0.5
+ENV EDEN_VER=0.2.2
+
 
 # Install NeuroML Python libraries
 
-RUN $VENV/bin/pip install pyNeuroML==1.0.10 # will set versions of libNeuroML, pylems, NeuroMLlite...
+RUN $VENV/bin/pip install pyNeuroML==$PYNEUROML_VER # will set versions of libNeuroML, pylems, NeuroMLlite...
 
 
 # Install OMV
 
-RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@v0.2.11
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
 
 # Install jNeuroML, PyLEMS & NeuroML2
 
-RUN $VENV/bin/omv install jNeuroML
+RUN $VENV/bin/omv install jNeuroML  
 ENV JNML_HOME=$HOME/jnml/jNeuroMLJar
 
 RUN $VENV/bin/omv install jLEMS
@@ -59,8 +68,7 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 # Install NetPyNE
 
 RUN apt-get remove -y python3-cycler python3-matplotlib python3-dateutil
-#RUN $VENV/bin/pip install pandas==0.23.4 python-dateutil==2.5.0
-RUN $VENV/bin/pip install git+https://github.com/suny-downstate-medical-center/netpyne@neuroml_updates
+RUN $VENV/bin/pip install netpyne==$NETPYNE_VER
 
 
 ######### Disabled for now, issues compiling on bionic....
@@ -93,7 +101,6 @@ RUN omv install arbor
 
 # Install EDEN
 
-ENV EDEN_VER=0.2.1
 RUN $VENV/bin/pip install eden-simulator==$EDEN_VER
 
 

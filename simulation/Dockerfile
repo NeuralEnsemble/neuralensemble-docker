@@ -12,7 +12,6 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 ENV NEST_VER=3.3
 ENV NRN_VER=8.1.0
-# Note: see below re Brian2 support...
 ENV BRIAN2_VER=2.5.1
 ENV PYNN_VER=0.10.1
 
@@ -54,9 +53,7 @@ RUN $VENV/bin/pip install neuron==$NRN_VER
 
 #### Install Brian2
 
-# Note 1: Brian 1.4.1 not Python 3 compatible
-# Note 2: For latest status on Brian 2 support in PyNN see: https://github.com/NeuralEnsemble/PyNN/pull/654
-
+# Note: Brian 1.4.1 not Python 3 compatible
 RUN $VENV/bin/pip install brian2==$BRIAN2_VER
 
 
