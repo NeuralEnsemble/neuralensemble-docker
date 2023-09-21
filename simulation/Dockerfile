@@ -10,8 +10,8 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 #### Set versions
 
-ENV NEST_VER=3.3
-ENV NRN_VER=8.1.0
+ENV NEST_VER=3.5
+ENV NRN_VER=8.2.2
 ENV BRIAN2_VER=2.5.1
 ENV PYNN_VER=0.11.0
 
