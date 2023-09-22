@@ -14,7 +14,7 @@ MAINTAINER p.gleeson@gmail.com
 USER root
 
 RUN apt-get update
-RUN apt-get install -y default-jdk python-tk python-lxml octave maven
+RUN apt-get install -y default-jdk python-tk octave maven
 RUN apt-get install -y htop libxml2-dev libxslt-dev zlib1g-dev
 RUN apt-get install -y python3-setuptools unzip
 
