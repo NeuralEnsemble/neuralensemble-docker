@@ -27,7 +27,8 @@ RUN cd coreprojects/SmithEtAl2013-L23DendriticSpikes/NEURON/test && nrnivmodl ..
 
 RUN cd coreprojects/L5bPyrCellHayEtAl2011/NEURON/test && nrnivmodl ../mod
 
-RUN cd coreprojects/ca1/NeuroML2 && nrnivmodl .. 
+# Note: sgate.mod is not required and throws an error on later NEURON versions
+RUN cd coreprojects/ca1 && rm sgate.mod && cd NeuroML2 && nrnivmodl .. 
 
 RUN cd coreprojects/SadehEtAl2017-InhibitionStabilizedNetworks && ./make_tests.sh
 
