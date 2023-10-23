@@ -23,7 +23,7 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.2.12    
+ENV OMV_VER=v0.2.13
 
 ENV PYNEUROML_VER=1.1.1
 ENV NETPYNE_VER=1.0.5
@@ -37,7 +37,7 @@ RUN $VENV/bin/pip install pyNeuroML==$PYNEUROML_VER # will set versions of libNe
 
 # Install OMV
 
-RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@v0.2.11
+RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@${OMV_VER}
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
 
