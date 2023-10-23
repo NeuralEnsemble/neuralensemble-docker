@@ -10,11 +10,10 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 #### Set versions
 
-ENV NEST_VER=2.20.0
-ENV NRN_VER=7.8.2
-# Note: see below re Brian2 support...
-ENV BRIAN2_VER=2.3
-ENV PYNN_VER=0.9.6
+ENV NEST_VER=3.3
+ENV NRN_VER=8.1.0
+ENV BRIAN2_VER=2.5.1
+ENV PYNN_VER=0.10.1
 
 
 #### Install NEST
@@ -35,14 +34,14 @@ RUN mkdir libneurosim; \
     make; make install; ls $VENV/lib $VENV/include
 RUN mkdir $NEST; \
     cd $NEST; \
-    ln -s /usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6.so $VENV/lib/; \
+    ln -s /usr/lib/python3.8/config-3.8-x86_64-linux-gnu/libpython3.8.so $VENV/lib/; \
     cmake -DCMAKE_INSTALL_PREFIX=$VENV \
           -Dwith-mpi=ON  \
           ###-Dwith-music=ON \
           -Dwith-libneurosim=ON \
           -DPYTHON_EXECUTABLE:FILEPATH=$VENV/bin/python \
-          -DPYTHON_LIBRARY=$VENV/lib/libpython3.6.so \
-          -DPYTHON_INCLUDE_DIR=/usr/include/python3.6 \
+          -DPYTHON_LIBRARY=$VENV/lib/libpython3.8.so \
+          -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 \
           $HOME/packages/$NEST; \
     make -j7; make install
 
@@ -54,9 +53,7 @@ RUN $VENV/bin/pip install neuron==$NRN_VER
 
 #### Install Brian2
 
-# Note 1: Brian 1.4.1 not Python 3 compatible
-# Note 2: For latest status on Brian 2 support in PyNN see: https://github.com/NeuralEnsemble/PyNN/pull/654
-
+# Note: Brian 1.4.1 not Python 3 compatible
 RUN $VENV/bin/pip install brian2==$BRIAN2_VER
 
 
@@ -68,6 +65,7 @@ ENV PATH=$PATH:$VENV/bin
 #### Install PyNN
 
 RUN $VENV/bin/pip install PyNN==$PYNN_VER
+RUN cd /home/docker/env/neurosci/lib/python3.8/site-packages/pyNN/neuron/nmodl; nrnivmodl; cd -
 
 
 #### Activate Python environment
