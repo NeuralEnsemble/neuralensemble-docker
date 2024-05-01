@@ -20,22 +20,30 @@ RUN apt-get install -y python3-setuptools unzip
 
 RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 
+#### Set versions
+
+# This will set the versions of simulators installed with 'omv install ...'
+ENV OMV_VER=v0.2.13
+
+ENV PYNEUROML_VER=1.1.1
+ENV NETPYNE_VER=1.0.5
+ENV EDEN_VER=0.2.2
+
 
 # Install NeuroML Python libraries
 
-RUN $VENV/bin/pip install pyNeuroML==0.5.19 # will set versions of libNeuroML, pylems, NeuroMLlite...
+RUN $VENV/bin/pip install pyNeuroML==$PYNEUROML_VER # will set versions of libNeuroML, pylems, NeuroMLlite...
 
 
 # Install OMV
 
-RUN git clone https://github.com/OpenSourceBrain/osb-model-validation.git
-RUN cd osb-model-validation && $VENV/bin/python setup.py install && cd -
+RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@${OMV_VER}
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
 
 # Install jNeuroML, PyLEMS & NeuroML2
 
-RUN $VENV/bin/omv install jNeuroML
+RUN $VENV/bin/omv install jNeuroML  
 ENV JNML_HOME=$HOME/jnml/jNeuroMLJar
 
 RUN $VENV/bin/omv install jLEMS
@@ -60,8 +68,7 @@ ENV NEST_INSTALL_DIR=$HOME/env/neurosci
 # Install NetPyNE
 
 RUN apt-get remove -y python3-cycler python3-matplotlib python3-dateutil
-RUN $VENV/bin/pip install matplotlib==2.2.4 pandas==0.23.4 python-dateutil==2.5.0
-RUN $VENV/bin/pip install netpyne==1.0.0.2
+RUN $VENV/bin/pip install netpyne==$NETPYNE_VER
 
 
 ######### Disabled for now, issues compiling on bionic....
@@ -80,46 +87,28 @@ RUN cd OSB_API/python && python setup.py install && cd -
 
 # Install neuroConstruct
 
-RUN git clone git://github.com/NeuralEnsemble/neuroConstruct.git
+RUN git clone https://github.com/NeuralEnsemble/neuroConstruct.git
 RUN cd neuroConstruct && ./updatenC.sh && ./nC.sh -make && cd -
 
 
 # Install Moose
 
-# Compile Moose with /usr/bin/python3, but install with venv version...
-# Caused by (not insurmountable) issue finding python headers in venv
-RUN git clone https://github.com/OpenSourceBrain/moose-core.git && cd moose-core && \
-    git checkout nml2_updates_2 && $VENV/bin/python setup.py install
+RUN omv install moose
 
+# Install Arbor
 
-# Update PyNN
+RUN omv install arbor
 
-###USER docker
-###RUN $VENV/bin/pip uninstall pynn -y
+# Install EDEN
+
+RUN $VENV/bin/pip install eden-simulator==$EDEN_VER
+
 
 USER root
-RUN git clone https://github.com/NeuralEnsemble/PyNN.git  && \
-    cd  PyNN && \
-    git checkout 0.9.6 && \
-    $VENV/bin/python  setup.py install && \
-    cd -   # neuroml branch has the latest NML2 import/export code!
+
 RUN which python
 
-# Update Brian
-
-###RUN git clone https://github.com/brian-team/brian.git
-###RUN cd brian && $HOME/env/neurosci/bin/python setup.py install && cd -
-
-
-# Install Brian2
-
-##RUN $HOME/env/neurosci/bin/pip install Brian2
-
-
-# Get some latest Python packages
-
-##RUN $HOME/env/neurosci/bin/pip install lazyarray --upgrade
-
+RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
 
 # Some aliases
 
