@@ -23,11 +23,12 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.2.13
+ENV OMV_VER=v0.2.21
 
-ENV PYNEUROML_VER=1.1.1
-ENV NETPYNE_VER=1.0.5
-ENV EDEN_VER=0.2.2
+ENV PYNEUROML_VER=1.2.12
+ENV NETPYNE_VER=1.0.6
+# omv install arbor with 0.9.0 throwing 'Illegal instruction'..?
+ENV ARBOR_VER=0.8.1  
 
 
 # Install NeuroML Python libraries
@@ -97,18 +98,18 @@ RUN omv install moose
 
 # Install Arbor
 
-RUN omv install arbor
+RUN omv install arbor:$ARBOR_VER 
 
 # Install EDEN
 
-RUN $VENV/bin/pip install eden-simulator==$EDEN_VER
+RUN omv install eden
 
 
 USER root
 
 RUN which python
 
-RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
+# RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
 
 # Some aliases
 
