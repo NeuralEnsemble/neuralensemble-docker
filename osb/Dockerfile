@@ -25,7 +25,7 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 # This will set the versions of simulators installed with 'omv install ...'
 ENV OMV_VER=v0.2.22
 
-ENV PYNEUROML_VER=1.2.12
+ENV PYNEUROML_VER=1.3.0
 ENV NETPYNE_VER=1.0.6
 # omv install arbor with 0.9.0 throwing 'Illegal instruction'..?
 ENV ARBOR_VER=0.8.1  
