@@ -109,7 +109,7 @@ USER root
 
 RUN which python
 
-# RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
+RUN $VENV/bin/pip install 'numpy<2.0.0' # as there are still some packages not compliant with this 
 
 # Some aliases
 
