@@ -83,7 +83,7 @@ RUN $VENV/bin/pip install netpyne==$NETPYNE_VER
 # Install OSB_API
 
 RUN git clone https://github.com/OpenSourceBrain/OSB_API.git
-RUN cd OSB_API/python && python setup.py install && cd -
+RUN cd OSB_API/python && pip install . && cd -
 
 
 # Install neuroConstruct
