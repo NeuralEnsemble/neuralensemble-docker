@@ -23,9 +23,9 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.3.2
+ENV OMV_VER=v0.3.3
 
-ENV PYNEUROML_VER=1.3.2
+ENV PYNEUROML_VER=1.3.8
 ENV NETPYNE_VER=1.0.6
 # omv install arbor with 0.9.0 throwing 'Illegal instruction'..?
 ENV ARBOR_VER=0.8.1  
@@ -83,7 +83,7 @@ RUN $VENV/bin/pip install netpyne==$NETPYNE_VER
 # Install OSB_API
 
 RUN git clone https://github.com/OpenSourceBrain/OSB_API.git
-RUN cd OSB_API/python && python setup.py install && cd -
+RUN cd OSB_API/python && pip install . && cd -
 
 
 # Install neuroConstruct
