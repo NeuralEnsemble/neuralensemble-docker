@@ -13,3 +13,4 @@ cd ../simulationx
 cd ../osb
 
 ./regenerate.sh
+
