@@ -9,7 +9,8 @@
 #FROM neuralensemble/simulationx:py2_pynn094
 # For local testing
 FROM neuralensemble/simulationx
-MAINTAINER p.gleeson@gmail.com
+LABEL org.opencontainers.image.authors="andrew.davison@unic.cnrs-gif.fr,p.gleeson@gmail.com"
+LABEL org.opencontainers.image.description="A Docker image for running neuronal models from Open Source Brain. This image extends the basic simulationx image by adding support for libraries required for OSB models"
 
 USER root
 
@@ -23,9 +24,9 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.3.3
+ENV OMV_VER=v0.3.8
 
-ENV PYNEUROML_VER=1.3.8
+ENV PYNEUROML_VER=1.3.18
 ENV NETPYNE_VER=1.0.6
 # omv install arbor with 0.9.0 throwing 'Illegal instruction'..?
 ENV ARBOR_VER=0.8.1  
@@ -38,6 +39,7 @@ RUN $VENV/bin/pip install pyNeuroML==$PYNEUROML_VER # will set versions of libNe
 
 # Install OMV
 
+RUN $VENV/bin/pip install scipy tables pythran pandas --upgrade 
 RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@${OMV_VER}
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
@@ -109,7 +111,6 @@ USER root
 
 RUN which python
 
-RUN $VENV/bin/pip install 'numpy<2.0.0' # as there are still some packages not compliant with this 
 
 # Some aliases
 
