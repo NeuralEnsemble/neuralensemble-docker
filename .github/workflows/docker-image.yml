@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:        
-        runs-on: [ubuntu-latest, macos-13, windows-latest ]
+        runs-on: [ubuntu-latest, macos-13 ]
 
 
     steps:
@@ -27,35 +27,29 @@ jobs:
         colima start
     
     - name: Build the base Docker image
-      shell: bash
       run: |
         cd base
         ./regenerate.sh
         
     - name: Build the simulation Docker image
-      shell: bash
       run: |
         cd simulation        
         ./generate.sh
 
     - name: Build the simulationx Docker image
-      shell: bash
       run: |
         cd simulationx       
         ./generate.sh
 
     - name: Build the osb Docker image
-      shell: bash
       run: |
         cd osb       
         ./generate.sh
 
     - name: Print info on installed packages
-      shell: bash
       run: |
         docker run -t  neuralensemble/osb   /bin/bash -c "omv list -V" 
 
     - name: Print info on docker images
-      shell: bash
       run: |
         docker images
