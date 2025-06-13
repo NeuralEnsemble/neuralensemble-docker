@@ -10,10 +10,10 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 #### Set versions
 
-ENV NEST_VER=3.3
-ENV NRN_VER=8.1.0
-ENV BRIAN2_VER=2.5.1
-ENV PYNN_VER=0.10.1
+ENV NEST_VER=3.5
+ENV NRN_VER=8.2.2
+ENV BRIAN2_VER=2.5.4
+ENV PYNN_VER=0.11.0
 
 
 #### Install NEST
@@ -43,7 +43,7 @@ RUN mkdir $NEST; \
           -DPYTHON_LIBRARY=$VENV/lib/libpython3.8.so \
           -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 \
           $HOME/packages/$NEST; \
-    make -j7; make install
+    make -j4; make install
 
 
 #### Install NEURON
