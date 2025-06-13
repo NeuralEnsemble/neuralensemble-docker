@@ -11,11 +11,12 @@ RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 #### Set versions
 
-ENV NEST_VER=3.5
+ENV NEST_VER=3.7
 ENV NRN_VER=8.2.7
 ENV BRIAN2_VER=2.9.0
-ENV PYNN_VER=0.11.0
+ENV PYNN_VER=0.12.4
 
+RUN $VENV/bin/pip install scipy tables pythran pandas numexpr --upgrade 
 
 #### Install NEST
 
