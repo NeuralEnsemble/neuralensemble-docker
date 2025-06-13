@@ -39,7 +39,7 @@ RUN $VENV/bin/pip install pyNeuroML==$PYNEUROML_VER # will set versions of libNe
 
 # Install OMV
 
-RUN $VENV/bin/pip install scipy tables pythran pandas --upgrade 
+RUN $VENV/bin/pip install scipy tables pythran pandas numexpr --upgrade 
 RUN $VENV/bin/pip install git+https://github.com/OpenSourceBrain/osb-model-validation@${OMV_VER}
 RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python'/g $VENV/bin/omv
 
