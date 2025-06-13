@@ -19,6 +19,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Setup docker (missing on MacOS)
+      if: runner.os == 'macos'
+      run: |
+        brew install docker colima
+        colima start
     
     - name: Build the base Docker image
       run: |
@@ -41,9 +47,11 @@ jobs:
         ./generate.sh
 
     - name: Print info on installed packages
+      shell: bash
       run: |
         docker run -t  neuralensemble/osb   /bin/bash -c "omv list -V" 
 
     - name: Print info on docker images
+      shell: bash
       run: |
         docker images
