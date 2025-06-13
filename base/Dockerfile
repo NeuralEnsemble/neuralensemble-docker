@@ -3,9 +3,10 @@
 #
 
 FROM neurodebian:jammy
-MAINTAINER andrew.davison@unic.cnrs-gif.fr
+LABEL org.opencontainers.image.authors="andrew.davison@unic.cnrs-gif.fr,p.gleeson@gmail.com"
+LABEL org.opencontainers.image.description="A base Docker image for Python-based computational neuroscience and neurophysiology"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 
 RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
@@ -26,5 +27,5 @@ ENV VENV=$HOME/env/neurosci
 RUN python3 -m venv $VENV && python3 -m venv --system-site-packages $VENV
 
 RUN $VENV/bin/pip3 install --upgrade pip
-RUN $VENV/bin/pip3 install parameters quantities neo django==1.8.19 django-tagging future hgapi gitpython sumatra nixio
+RUN $VENV/bin/pip3 install parameters quantities neo django-tagging future hgapi gitpython sumatra nixio
 RUN $VENV/bin/pip3 install --upgrade nose ipython
