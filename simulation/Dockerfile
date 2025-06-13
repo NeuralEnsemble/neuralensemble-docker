@@ -43,7 +43,7 @@ RUN mkdir $NEST; \
           -DPYTHON_LIBRARY=$VENV/lib/libpython3.8.so \
           -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 \
           $HOME/packages/$NEST; \
-    make -j7; make install
+    make -j4; make install
 
 
 #### Install NEURON
