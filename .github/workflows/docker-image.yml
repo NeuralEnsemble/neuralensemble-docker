@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:        
-        runs-on: [ubuntu-latest, macos-13 ]
+        runs-on: [ubuntu-latest ] # macos-13 takes too long to build nest
 
 
     steps:
