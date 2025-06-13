@@ -27,21 +27,25 @@ jobs:
         colima start
     
     - name: Build the base Docker image
+      shell: bash
       run: |
         cd base
         ./regenerate.sh
         
     - name: Build the simulation Docker image
+      shell: bash
       run: |
         cd simulation        
         ./generate.sh
 
     - name: Build the simulationx Docker image
+      shell: bash
       run: |
         cd simulationx       
         ./generate.sh
 
     - name: Build the osb Docker image
+      shell: bash
       run: |
         cd osb       
         ./generate.sh
