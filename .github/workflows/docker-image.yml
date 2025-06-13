@@ -53,3 +53,7 @@ jobs:
     - name: Print info on docker images
       run: |
         docker images
+
+    - name: Test a number of repos from OSB
+      run: |
+        docker run -t  neuralensemble/osb   /bin/bash -c "git clone https://github.com/OpenSourceBrain/PyNNShowcase.git && cd PyNNShowcase && omv find && omv all -V" 
