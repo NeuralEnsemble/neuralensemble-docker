@@ -14,7 +14,7 @@ MAINTAINER p.gleeson@gmail.com
 USER root
 
 RUN apt-get update
-RUN apt-get install -y default-jdk python-tk python-lxml octave maven
+RUN apt-get install -y default-jdk python-tk octave maven
 RUN apt-get install -y htop libxml2-dev libxslt-dev zlib1g-dev
 RUN apt-get install -y python3-setuptools unzip
 
@@ -23,11 +23,12 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.2.13
+ENV OMV_VER=v0.3.3
 
-ENV PYNEUROML_VER=1.1.1
-ENV NETPYNE_VER=1.0.5
-ENV EDEN_VER=0.2.2
+ENV PYNEUROML_VER=1.3.8
+ENV NETPYNE_VER=1.0.6
+# omv install arbor with 0.9.0 throwing 'Illegal instruction'..?
+ENV ARBOR_VER=0.8.1  
 
 
 # Install NeuroML Python libraries
@@ -82,7 +83,7 @@ RUN $VENV/bin/pip install netpyne==$NETPYNE_VER
 # Install OSB_API
 
 RUN git clone https://github.com/OpenSourceBrain/OSB_API.git
-RUN cd OSB_API/python && python setup.py install && cd -
+RUN cd OSB_API/python && pip install . && cd -
 
 
 # Install neuroConstruct
@@ -97,18 +98,18 @@ RUN omv install moose
 
 # Install Arbor
 
-RUN omv install arbor
+RUN omv install arbor:$ARBOR_VER 
 
 # Install EDEN
 
-RUN $VENV/bin/pip install eden-simulator==$EDEN_VER
+RUN omv install eden
 
 
 USER root
 
 RUN which python
 
-RUN $VENV/bin/pip install 'numpy<=1.23.0' # see https://github.com/OpenSourceBrain/osb-model-validation/issues/91
+RUN $VENV/bin/pip install 'numpy<2.0.0' # as there are still some packages not compliant with this 
 
 # Some aliases
 
