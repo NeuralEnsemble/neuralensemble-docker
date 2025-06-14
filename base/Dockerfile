@@ -11,7 +11,7 @@ ENV LANG=C.UTF-8
 
 RUN apt-get update
 RUN apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
-                       wget python3 libpython3-dev libncurses5-dev libreadline-dev libgsl0-dev cython3 \
+                       wget python3 libpython3-dev libncurses5-dev libreadline-dev libgsl0-dev \
                        ipython3 \
                        subversion python3-venv python3-mpi4py cmake zlib1g-dev
 

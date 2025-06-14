@@ -17,6 +17,7 @@ ENV BRIAN2_VER=2.9.0
 ENV PYNN_VER=0.12.4
 
 RUN $VENV/bin/pip install scipy tables pythran pandas numexpr matplotlib --upgrade 
+RUN $VENV/bin/pip install "cython<3.1.0"
 
 #### Install NEST
 
