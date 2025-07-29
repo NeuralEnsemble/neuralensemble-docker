@@ -24,9 +24,9 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.3.8
+ENV OMV_VER=v0.3.10
 
-ENV PYNEUROML_VER=1.3.18
+ENV PYNEUROML_VER=1.3.21
 ENV NETPYNE_VER=1.0.6
 # omv install arbor with 0.9.0 throwing 'Illegal instruction'..?
 ENV ARBOR_VER=0.8.1  
@@ -45,9 +45,6 @@ RUN sed -i -e s/'\/usr\/bin\/python'/'\/home\/docker\/env\/neurosci\/bin\/python
 
 
 # Install jNeuroML, PyLEMS & NeuroML2
-
-RUN $VENV/bin/omv install jNeuroML  
-ENV JNML_HOME=$HOME/jnml/jNeuroMLJar
 
 RUN $VENV/bin/omv install jLEMS
 ENV LEMS_HOME=$HOME/jLEMS
