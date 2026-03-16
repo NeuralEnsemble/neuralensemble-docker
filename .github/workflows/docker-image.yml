@@ -54,6 +54,7 @@ jobs:
 
     - name: Print info on docker images
       run: |
+        df -h
         docker images
 
     - name: Test a number of repos from OSB
