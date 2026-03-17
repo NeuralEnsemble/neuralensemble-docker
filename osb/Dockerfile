@@ -51,7 +51,7 @@ ENV LEMS_HOME=$HOME/jLEMS
 
 RUN $VENV/bin/omv install PyLEMS_NeuroML2
 
-ENV PATH=$PATH:$JNML_HOME:$LEMS_HOME
+ENV PATH=$PATH:$LEMS_HOME
 
 
 # Set up NEURON (TODO: should be set in neuralensemble/simulationx...)
