@@ -24,7 +24,7 @@ RUN /bin/bash -c "source ~/env/neurosci/bin/activate"
 #### Set versions
 
 # This will set the versions of simulators installed with 'omv install ...'
-ENV OMV_VER=v0.3.10
+ENV OMV_VER=v0.3.11
 
 ENV PYNEUROML_VER=1.3.21
 ENV NETPYNE_VER=1.0.6
