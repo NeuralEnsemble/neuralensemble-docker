@@ -3,16 +3,17 @@
 #
 
 FROM neurodebian:jammy
-MAINTAINER andrew.davison@unic.cnrs-gif.fr
+LABEL org.opencontainers.image.authors="andrew.davison@unic.cnrs-gif.fr,p.gleeson@gmail.com"
+LABEL org.opencontainers.image.description="A base Docker image for Python-based computational neuroscience and neurophysiology"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 
-RUN apt-get update; apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
-                       wget python3 libpython3-dev libncurses5-dev libreadline-dev libgsl0-dev cython3 \
-                       python3-numpy python3-scipy python3-matplotlib python3-jinja2 python3-mock \
-                       ipython3 python3-httplib2 python3-docutils python3-yaml \
-                       subversion python3-venv python3-mpi4py python3-tables python3-h5py cmake zlib1g-dev
+RUN apt-get update
+RUN apt-get install -y automake libtool build-essential openmpi-bin libopenmpi-dev git vim  \
+                       wget python3 libpython3-dev libncurses5-dev libreadline-dev libgsl0-dev \
+                       ipython3 \
+                       subversion python3-venv python3-mpi4py cmake zlib1g-dev
 
 RUN useradd -ms /bin/bash docker
 USER docker
@@ -26,5 +27,5 @@ ENV VENV=$HOME/env/neurosci
 RUN python3 -m venv $VENV && python3 -m venv --system-site-packages $VENV
 
 RUN $VENV/bin/pip3 install --upgrade pip
-RUN $VENV/bin/pip3 install parameters quantities neo django==1.8.19 django-tagging future hgapi gitpython sumatra nixio
+RUN $VENV/bin/pip3 install parameters quantities neo django-tagging future hgapi gitpython sumatra nixio
 RUN $VENV/bin/pip3 install --upgrade nose ipython
