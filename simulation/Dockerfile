@@ -3,18 +3,21 @@
 #
 
 FROM neuralensemble/base
-MAINTAINER andrew.davison@unic.cnrs-gif.fr
+LABEL org.opencontainers.image.authors="andrew.davison@unic.cnrs-gif.fr,p.gleeson@gmail.com"
+LABEL org.opencontainers.image.description="A Docker image for running neuronal network simulations"
 
 RUN ln -s /usr/bin/2to3-3.5 $VENV/bin/2to3
 
 
 #### Set versions
 
-ENV NEST_VER=3.5
-ENV NRN_VER=8.2.2
-ENV BRIAN2_VER=2.5.4
+ENV NEST_VER=3.7
+ENV NRN_VER=8.2.7
+ENV BRIAN2_VER=2.9.0
 ENV PYNN_VER=0.11.0
 
+RUN $VENV/bin/pip install scipy tables pythran pandas numexpr matplotlib --upgrade 
+RUN $VENV/bin/pip install "cython<3.1.0"
 
 #### Install NEST
 
@@ -43,7 +46,7 @@ RUN mkdir $NEST; \
           -DPYTHON_LIBRARY=$VENV/lib/libpython3.8.so \
           -DPYTHON_INCLUDE_DIR=/usr/include/python3.8 \
           $HOME/packages/$NEST; \
-    make -j4; make install
+    make -j7; make install
 
 
 #### Install NEURON

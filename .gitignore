@@ -1,5 +1,5 @@
 .idea
-/base/generate.sh
 /simulationx/runLocal.sh
 /simulationx/regenerateAll.sh
 /base/runLocal.sh
+.DS_Store

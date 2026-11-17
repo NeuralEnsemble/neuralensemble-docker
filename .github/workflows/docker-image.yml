@@ -1,10 +1,12 @@
 name: Docker Image CI
 
 on:
+  schedule:
+    - cron: "1 1 28 */1 *"  # Run once a month to test...
   push:
-    branches: [ master, test_pynn* ]
+    branches: [ master, test* ]
   pull_request:
-    branches: [ master, test_pynn* ]
+    branches: [ master, test* ]
 
 jobs:
 
@@ -18,7 +20,7 @@ jobs:
 
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Setup docker (missing on MacOS)
       if: runner.os == 'macos'
@@ -52,4 +54,9 @@ jobs:
 
     - name: Print info on docker images
       run: |
+        df -h
         docker images
+
+    - name: Test a number of repos from OSB
+      run: |
+        docker run -t  neuralensemble/osb   /bin/bash -c "git clone https://github.com/OpenSourceBrain/PyNNShowcase.git && cd PyNNShowcase && omv find && omv all -V" 

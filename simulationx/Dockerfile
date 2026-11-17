@@ -6,7 +6,8 @@
 #
 
 FROM neuralensemble/simulation
-MAINTAINER andrew.davison@unic.cnrs-gif.fr
+LABEL org.opencontainers.image.authors="andrew.davison@unic.cnrs-gif.fr,p.gleeson@gmail.com"
+LABEL org.opencontainers.image.description="A Docker image for running neuronal network simulations. This image extends the basic simulation image by adding support for SSH access and Xwindows."
 
 USER root
 
